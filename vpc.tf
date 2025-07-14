@@ -21,8 +21,8 @@ resource "aws_route_table" "core" {
 
 resource "aws_subnet" "core" {
   for_each = {
-    "10.10.1.0/24" = "a",
-    "10.10.2.0/24" = "b",
+    "10.0.1.0/24" = "a",
+    "10.0.2.0/24" = "b",
   }
   vpc_id            = aws_vpc.core.id
   cidr_block        = each.key
