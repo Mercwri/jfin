@@ -23,9 +23,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "itc" {
   rule {
     status = "Enabled"
     id     = "itc"
-    expiration {
-      days = 0
-    }
     transition {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
