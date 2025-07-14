@@ -26,10 +26,7 @@ resource "aws_lb" "lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
-  subnets = [
-    "10.0.1.0/24",
-    "10.0.2.0/24"
-  ]
+  subnets = [for s in aws_subnet.core : s.id]
 }
 
 resource "aws_lb_target_group" "jf" {
