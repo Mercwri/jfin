@@ -24,7 +24,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "itc" {
     status = "Enabled"
     id     = "itc"
     expiration {
-      days = 365
+      days = 0
     }
     transition {
       days          = 0
