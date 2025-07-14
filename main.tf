@@ -10,8 +10,8 @@ resource "aws_s3_bucket" "backup" {
 
 resource "aws_s3_bucket_acl" "acl" {
   for_each = toset([
-    aws_s3_bucket.media.id,
-    aws_s3_bucket.backup.id,
+    "media-jf-mikeell",
+    "backup-jf-mikeell"
   ])
   bucket     = each.value
   acl        = "private"
