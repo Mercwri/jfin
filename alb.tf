@@ -76,3 +76,9 @@ resource "aws_lb_listener" "https" {
     target_group_arn = aws_lb_target_group.jf.arn
   }
 }
+
+resource "aws_lb_target_group_attachment" "jf" {
+  target_group_arn = aws_lb_target_group.jf.arn
+  target_id        = aws_instance.jellyfin.id
+  port             = 80
+}
