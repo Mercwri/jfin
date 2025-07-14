@@ -13,15 +13,15 @@ resource "aws_s3_bucket_acl" "acl" {
     aws_s3_bucket.media.id,
     aws_s3_bucket.backup.id,
   ])
-  bucket   = each.value
-  acl      = "private"
+  bucket = each.value
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "itc" {
   bucket = aws_s3_bucket.media.id
   rule {
     status = "Enabled"
-    id      = "itc"
+    id     = "itc"
     expiration {
       days = 365
     }
@@ -39,7 +39,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "backup" {
   bucket = aws_s3_bucket.backup.id
   rule {
     status = "Enabled"
-    id      = "backup"
+    id     = "backup"
     expiration {
       days = 30
     }
