@@ -15,6 +15,7 @@ resource "aws_s3_bucket_acl" "acl" {
   ])
   bucket = each.value
   acl    = "private"
+  depends_on = [ aws_s3_bucket.backup, aws_s3_bucket.media ]
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "itc" {
