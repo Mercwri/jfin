@@ -6,16 +6,6 @@ resource "aws_s3_bucket" "backup" {
   bucket = "backup-jf-mikeell"
 }
 
-resource "aws_s3_bucket_acl" "acl" {
-  for_each = toset([
-    "media-jf-mikeell",
-    "backup-jf-mikeell"
-  ])
-  bucket     = each.value
-  acl        = "private"
-  depends_on = [aws_s3_bucket.backup, aws_s3_bucket.media]
-}
-
 resource "aws_s3_bucket_lifecycle_configuration" "itc" {
   bucket = aws_s3_bucket.media.id
   rule {
