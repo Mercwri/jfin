@@ -25,6 +25,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "itc" {
       days          = 0
       storage_class = "INTELLIGENT_TIERING"
     }
+    filter {
+      prefix = "/"
+    }
     noncurrent_version_expiration {
       noncurrent_days = 30
     }
@@ -38,6 +41,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "backup" {
     id     = "backup"
     expiration {
       days = 30
+    }
+    filter {
+        prefix = "/"
     }
     noncurrent_version_expiration {
       noncurrent_days = 30

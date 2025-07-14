@@ -27,7 +27,8 @@ resource "aws_lb" "lb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
   subnets = [
-    aws_subnet.core.*.id
+    "10.10.1.0/24",
+    "10.10.2.0/24"
   ]
 }
 
