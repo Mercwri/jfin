@@ -43,3 +43,7 @@ resource "aws_iam_role_policy" "s3" {
   role   = aws_iam_role.media_backup_role.name
   policy = data.aws_iam_policy_document.media-read-backup-write.json
 }
+
+resource "aws_iam_instance_profile" "jellyfin" {
+  role = aws_iam_role.media_backup_role.name
+}
