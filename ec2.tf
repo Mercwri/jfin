@@ -56,6 +56,12 @@ resource "aws_instance" "jellyfin" {
   }
   vpc_security_group_ids = [aws_security_group.jellfin-server-sg.id]
   subnet_id              = aws_subnet.core["10.0.1.0/24"].id
+  lifecycle {
+    ignore_changes = [
+      ami,
+      instance_type,
+    ]
+  }
 }
 
 resource "aws_eip" "jfin" {
