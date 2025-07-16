@@ -61,3 +61,8 @@ resource "aws_iam_role_policy" "ssm" {
 resource "aws_iam_instance_profile" "jellyfin" {
   role = aws_iam_role.media_backup_role.name
 }
+
+resource "aws_iam_role_policy_attachment" "manage_ssm" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role       = aws_iam_role.media_backup_role.name
+}
