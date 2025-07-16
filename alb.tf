@@ -37,7 +37,7 @@ resource "aws_lb_target_group" "jf" {
   health_check {
     enabled = true
     path    = "/"
-    matcher = "200"
+    matcher = "200,302"
   }
 }
 
