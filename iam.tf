@@ -34,6 +34,15 @@ data "aws_iam_policy_document" "media-read-backup-write" {
   }
 }
 
+data "aws_iam_policy_document" "allow_ssm_session_manager" {
+  statement {
+    actions = [
+      "ssm:*",
+    ]
+    resources = ["*"]
+  }
+}
+
 resource "aws_iam_role" "media_backup_role" {
   name               = "media_backup_role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
@@ -42,6 +51,11 @@ resource "aws_iam_role" "media_backup_role" {
 resource "aws_iam_role_policy" "s3" {
   role   = aws_iam_role.media_backup_role.name
   policy = data.aws_iam_policy_document.media-read-backup-write.json
+}
+
+resource "aws_iam_role_policy" "ssm" {
+  role   = aws_iam_role.media_backup_role.name
+  policy = data.aws_iam_policy_document.allow_ssm_session_manager.json
 }
 
 resource "aws_iam_instance_profile" "jellyfin" {
