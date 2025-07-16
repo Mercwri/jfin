@@ -40,20 +40,3 @@ resource "aws_s3_bucket_lifecycle_configuration" "backup" {
     }
   }
 }
-
-resource "aws_s3_bucket_inventory" "media" {
-  bucket = aws_s3_bucket.media.id
-  name   = "media-inventory"
-  schedule {
-    frequency = "Daily"
-  }
-  destination {
-    bucket {
-      format     = "Parquet"
-      bucket_arn = aws_s3_bucket.backup.arn
-      prefix     = "inventory/"
-    }
-  }
-  included_object_versions = "All"
-  optional_fields          = ["Size", "LastModifiedDate", "StorageClass"]
-}

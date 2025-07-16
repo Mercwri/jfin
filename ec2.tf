@@ -63,8 +63,3 @@ resource "aws_instance" "jellyfin" {
     ]
   }
 }
-
-resource "aws_eip" "jfin" {
-  instance = aws_instance.jellyfin.id
-  domain   = "vpc"
-}
